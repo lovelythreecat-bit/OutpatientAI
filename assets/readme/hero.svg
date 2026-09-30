@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="title desc">
+  <title id="title">智慧医疗 — AI 智能医疗问诊平台</title>
+  <desc id="desc">以知识检索和症状图谱辅助健康问答，连接患者、医生与管理员。下方示意健康问题经文档检索与图谱匹配形成回答上下文。</desc>
+  <rect width="1200" height="380" rx="24" fill="#183f36"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', sans-serif">
+    <g id="identity">
+      <text x="64" y="61" font-size="19" letter-spacing="3" fill="#dce9b9">HEALTHCARE · AI</text>
+      <text x="62" y="156" font-size="80" font-weight="700" fill="#f5f6ef">智慧医疗</text>
+      <text x="65" y="212" font-size="32" fill="#dce9b9">从健康提问，到就医服务。</text>
+      <text x="1128" y="62" text-anchor="end" font-size="22" fill="#dce9b9">患者 / 医生 / 管理员</text>
+      <text x="1128" y="141" text-anchor="end" font-size="34" font-weight="600" fill="#f5f6ef">AI 智能医疗问诊平台</text>
+      <text x="1128" y="184" text-anchor="end" font-size="23" fill="#dce9b9">Vue 3 · FastAPI · LangChain</text>
+    </g>
+    <path d="M64 248H1136" stroke="#4c6d5f" stroke-width="1"/>
+    <g id="retrieval-context" fill="none" stroke="#9eb994" stroke-width="2">
+      <path d="M231 310H315V285H387 M315 310V339H387 M659 285H724V310H811 M659 339H724V310"/>
+      <path d="M801 303L811 310L801 317"/>
+      <circle cx="315" cy="310" r="4" fill="#dce9b9" stroke="none"/>
+      <circle cx="724" cy="310" r="4" fill="#dce9b9" stroke="none"/>
+    </g>
+    <g id="retrieval-labels" fill="#f5f6ef" font-size="30">
+      <text x="64" y="320">健康问题</text>
+      <text x="411" y="295">知识文档检索</text>
+      <text x="411" y="349">症状图谱匹配</text>
+      <text x="847" y="320" fill="#dce9b9">辅助生成回答</text>
+    </g>
+  </g>
+</svg>
