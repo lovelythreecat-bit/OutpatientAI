@@ -1,0 +1,11 @@
+const task=await taskSpace(5);const page=task.page('p1');const dir='F:/Work/hospital/hos/docs/prototypes/consultation/screenshots';
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1040,deviceScaleFactor:1,mobile:false});
+for(const id of [1,2,3,4])await page.click(`loc=css:input[data-select="${id}"]`);
+await page.screenshot({path:dir+'/05-doctor-selection.png'});
+await page.click('loc=css:#generate');
+await page.waitForSelector('loc=css:#article-body',{state:'visible'});
+await page.screenshot({path:dir+'/06-knowledge-review.png'});
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+console.log('mobile overflow',await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth})));
+await page.screenshot({path:dir+'/07-mobile-review.png'});
+console.log(await page.snapshot());

@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+const path=new URL('../prototype.js',import.meta.url);
+let s=fs.readFileSync(path,'utf8');
+function replace(a,b){if(!s.includes(a))throw new Error('Missing target: '+a.slice(0,90));s=s.replace(a,b)}
+replace("state.filter==='pending'&&i===2", "state.filter==='pending'&&(doctor?i===2:i!==0)");
+replace("state.filter==='pending'&&el.dataset.conversation==='2'", "state.filter==='pending'&&(isDoctor()?el.dataset.conversation==='2':el.dataset.conversation!=='0')");
+replace("${!doctor&&state.handed.has(state.doctor)?summaryCard():''}", '');
+replace("${(state.messages[doctor?state.patient:state.doctor]||[]).map((m,i)=>messageMarkup({id:100+i,role:doctor?'doctor':'user',time:'刚刚',text:m},doctor)).join('')}", "${(doctor?state.patient===0&&state.handed.has(0):state.handed.has(state.doctor))?summaryCard():''}${(state.messages[doctor?state.patient:state.doctor]||[]).map(m=>messageMarkup(m,doctor)).join('')}");
+replace('<time>10:28</time>', '<time>刚刚</time>');
+replace("state.messages[key].push(text)", "state.messages[key].push({id:100+state.messages[key].length,role:isDoctor()?'doctor':'user',time:'刚刚',text})");
+replace("function selectedSources(){return sourceMessages.filter(m=>state.selected.has(m.id))}", "function selectedSources(){return [...sourceMessages,...state.messages[0]].filter(m=>state.selected.has(m.id))}");
+replace("if(selected.length===4)return defaultArticle", "if(selected.length===4&&selected.every(m=>m.id<=4))return defaultArticle");
+replace('来源：4 条咨询消息','来源：${state.selected.size} 条咨询消息');
+replace("state.filter='all';state.mobileList=false;render();window.scrollTo(0,0)", "state.filter='all';state.mobileList=false;if(state.page!=='doctor')state.selecting=false;render();window.scrollTo(0,0)");
+replace("function render(){navigation();", "function render(){if(state.page!=='doctor')state.selecting=false;navigation();");
+replace("bind();}\nfunction navigate", "bind();const messages=document.querySelector('.messages');if(messages&&!state.selecting)messages.scrollTop=messages.scrollHeight;}\nfunction navigate");
+replace('<div class="review-layout"><aside class="source-pane">', '<button class="btn mobile-only source-toggle" id="toggle-sources" aria-expanded="false">${icon(\'chat\')}查看选中的 ${state.selected.size} 条对话</button><div class="review-layout"><aside class="source-pane">');
+replace("on('back-chat','click'", "on('toggle-sources','click',()=>{const pane=document.querySelector('.source-pane');pane.classList.toggle('mobile-expanded');document.querySelector('#toggle-sources').setAttribute('aria-expanded',pane.classList.contains('mobile-expanded'));});\n on('back-chat','click'");
+replace("document.querySelector('#article-body').focus();document.execCommand", "document.querySelector('#article-body').focus();document.execCommand");
+fs.writeFileSync(path,s,'utf8');

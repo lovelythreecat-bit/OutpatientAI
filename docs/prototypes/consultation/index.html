@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#197568">
+  <title>智慧医疗 · 在线咨询交互原型</title>
+  <link rel="stylesheet" href="./prototype.css">
+  <link rel="stylesheet" href="./doctor-shell.css">
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要内容</a>
+  <div class="prototype-bar">
+    <div class="prototype-label"><span class="live-dot"></span>在线咨询 · 交互原型 <span class="demo-label">虚构数据演示</span></div>
+    <nav aria-label="原型页面" id="prototype-nav"></nav>
+    <button class="reset" id="reset">重置演示</button>
+  </div>
+  <div id="app"></div>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <dialog id="doctor-dialog" aria-labelledby="doctor-dialog-title"></dialog>
+  <script src="./doctor-shell.js"></script>
+  <script src="./prototype.js"></script>
+</body>
+</html>

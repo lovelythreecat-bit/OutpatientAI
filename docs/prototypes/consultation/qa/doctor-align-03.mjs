@@ -1,0 +1,16 @@
+const task=await taskSpace(6);const page=task.page('p1');const dir='F:/Work/hospital/hos/docs/prototypes/consultation/screenshots';
+await page.reload();
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+await page.click('loc=css:#doctor-mobile-menu');
+console.log('mobile menu open',await page.evaluate(()=>document.body.classList.contains('doctor-menu-open')));
+await page.press('loc=css:.doctor-nav .active','Escape');
+await page.click('loc=css:#prototype-nav a[href="#review"]');
+await page.screenshot({path:dir+'/07-mobile-review.png'});
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1280,height:900,deviceScaleFactor:1,mobile:false});
+console.log('review 1280 overflow',await page.evaluate(()=>({viewport:innerWidth,content:document.documentElement.scrollWidth})));
+await page.click('loc=css:#prototype-nav a[href="#patient"]');
+console.log('patient layout preserved',await page.evaluate(()=>({doctorClass:document.body.classList.contains('doctor-view'),portal:!!document.querySelector('.site-header'),doctorSidebar:!!document.querySelector('.doctor-sidebar')})));
+await page.click('loc=css:#prototype-nav a[href="#doctor"]');
+await page.cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1040,deviceScaleFactor:1,mobile:false});
+await page.click('loc=css:#toggle-selection');
+console.log(await page.snapshot());
